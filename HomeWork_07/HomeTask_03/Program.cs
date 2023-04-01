@@ -38,14 +38,14 @@ void PrintArray2D(int[,] array2D)
 void CalculateArithmeticMeanColumns(int[,] array2D)
 {
     Console.Write("Среднее арифметическое столбца: ");
-    for (int i = 0; i < array2D.GetLength(1); i++)
+    for (int j = 0; j < array2D.GetLength(1); j++)
     {
         double sumColumns = 0;
         double arithmeticMean = 0;
 
-        for (int j = 0; j < array2D.GetLength(0); j++)
+        for (int i = 0; i < array2D.GetLength(0); i++)
         {
-            sumColumns += array2D[j, i];
+            sumColumns += array2D[i, j];
             arithmeticMean = Math.Round(sumColumns / array2D.GetLength(0), 2);
         }
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
@@ -54,9 +54,9 @@ void CalculateArithmeticMeanColumns(int[,] array2D)
 }
 
 System.Console.WriteLine();
-System.Console.Write("Введите кол-во строк: ");
+System.Console.Write("Введите необходимое кол-во строк: ");
 int rows = Convert.ToInt32(Console.ReadLine());
-System.Console.Write("Введите кол-во столбцов: ");
+System.Console.Write("Введите необходимое кол-во столбцов: ");
 int columns = Convert.ToInt32(Console.ReadLine());
 
 int[,] array2D = CreateAndFillArray(rows, columns, 0, 20);
