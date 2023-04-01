@@ -29,7 +29,7 @@ void PrintArray2D(int[,] array2D)
     {
         for (int j = 0; j < array2D.GetLength(1); j++)
         {
-            System.Console.Write("|" + array2D[i, j] + "\t");
+            System.Console.Write(array2D[i, j] + "\t");
         }
         System.Console.WriteLine();
     }
