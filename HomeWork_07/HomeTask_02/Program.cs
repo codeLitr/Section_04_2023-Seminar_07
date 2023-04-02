@@ -9,12 +9,14 @@
 
 // 17 -> такого числа в массиве нет
 
-int[,] CreateAndFillArray(int rowsRnd, int columnsRnd, int leftRangeValue, int rightRangeValue)
+int[,] CreateAndFillArray2D(int rows, int columns, int leftRangeValue, int rightRangeValue)
 {
-    int rows = new Random().Next(1, rowsRnd + 1);
-    int columns = new Random().Next(1, columnsRnd + 1);
+    int rowsRnd = new Random().Next(1, rows + 1);
+    //int rowsRnd = rows; // Для проверки работоспособности (без рандомайзера) необходимо раскомментировать данную строки и закомментировать строку выше.
+    int columnsRnd = new Random().Next(1, columns + 1);
+    //int columnsRnd = columns; // Для проверки работоспособности (без рандомайзера) необходимо раскомментировать данную строки и закомментировать строку выше.
 
-    int[,] array2D = new int[rows, columns];
+    int[,] array2D = new int[rowsRnd, columnsRnd];
 
     Random rnd = new Random();
 
@@ -42,23 +44,15 @@ void PrintArray2D(int[,] array2D)
 
 void LetsPlayGame(int[,] array2D, int rowPos, int columnPos)
 {
-    for (int i = 0; i < array2D.GetLength(0); i++)
+    if (rowPos >= 0 && rowPos < array2D.GetLength(0) && columnPos >= 0 && columnPos < array2D.GetLength(1))
     {
-        for (int j = 0; j < array2D.GetLength(1); j++)
-        {
-            if (rowPos < 0 || rowPos > arr.GetLength(0) - 1 | pos2 < 0 | pos2 > arr.GetLength(1) - 1)
-            {
-                Console.WriteLine("Элемент не существует  ");
-            }
-            else
-            {
-                Console.WriteLine("Значение элемента массива = {0}", arr[pos1, pos2]);
-            }
-            {
-                System.Console.WriteLine($"Поздравляю, Вы угадали, число на данной позиции = {array2D[i, j]}");
-            }
-        }
-
+        Console.WriteLine($"Поздравляю, Вы угадали, число на позиции {rowPos} и {columnPos} -> {array2D[rowPos, columnPos]}");
+        System.Console.WriteLine();
+    }
+    else
+    {
+        Console.WriteLine($"{rowPos} и {columnPos} -> Такого числа в массиве нет.");
+        System.Console.WriteLine();
     }
 }
 
@@ -70,11 +64,11 @@ System.Console.WriteLine("Сейчас Вам понадобится ввест�
 System.Console.WriteLine();
 
 System.Console.Write("Введите максимальное желаемое кол-во строк: ");
-int rowsRnd = Convert.ToInt32(Console.ReadLine());
+int rows = Convert.ToInt32(Console.ReadLine());
 System.Console.Write("Введите максимальное желаемое кол-во столбцов: ");
-int columnsRnd = Convert.ToInt32(Console.ReadLine());
+int columns = Convert.ToInt32(Console.ReadLine());
 
-int[,] array2D = CreateAndFillArray(rowsRnd, columnsRnd, 0, 10);
+int[,] array2D = CreateAndFillArray2D(rows, columns, 0, 10);
 
 System.Console.WriteLine();
 System.Console.WriteLine("А теперь введите позицию в массиве. Кто знает, может Вам повезет и Вы угадаете с первого раза!");
@@ -88,4 +82,4 @@ System.Console.WriteLine();
 PrintArray2D(array2D);
 System.Console.WriteLine();
 
-LetsPlayGame(array2D);
+LetsPlayGame(array2D, rowPos, columnPos);
